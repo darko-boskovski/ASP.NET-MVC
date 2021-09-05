@@ -1,0 +1,20 @@
+﻿@using BookLibrary_Homework.Models.Domain
+@model List<Book>
+
+<h3>@ViewBag.Title</h3>
+<br />
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <ul>
+        <li>@Model[i].Title</li>
+        <li>@Model[i].YearOfPublishing</li>
+
+        @foreach (var author in @Model[i].Authors)
+        {
+
+            <li>"Author: @author.FirstName  @author.LastName"</li>
+
+        }
+    </ul>
+}

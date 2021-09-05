@@ -1,0 +1,18 @@
+﻿@model MyOrderDetailsViewModel
+
+@{
+    string status = "The pizza is on the way...";
+    if (Model.IsDelivered)
+    {
+        status = "The Pizza is delivered to the required destitnation!";
+    }
+}
+
+<h4>This is my Partial View Order Details:</h4>
+<ul>
+    <li>ID: @Model.Id</li>
+    <li>Name: @("Mr./Mrs. " + Model.FullName)</li>
+    <li>Pizza: @Model.Pizza</li>
+    <li>Price: @Model.Price</li>
+    <li>Delivered: @status</li>
+</ul>

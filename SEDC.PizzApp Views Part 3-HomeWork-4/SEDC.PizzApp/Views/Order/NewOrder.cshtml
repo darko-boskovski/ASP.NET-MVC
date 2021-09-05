@@ -1,0 +1,54 @@
+﻿@using SEDC.PizzApp.Enums
+@model NewOrderViewModel
+
+<h4>Using Html Helper</h4>
+
+@using (Html.BeginForm())
+{
+
+    @Html.LabelFor(x => x.FirstName)
+    <text>&nbsp;</text>
+    @Html.TextBoxFor(x => x.FirstName)
+
+    <br />
+    @Html.LabelFor(x => x.LastName)
+    <text>&nbsp;</text>
+    @Html.TextBoxFor(x => x.LastName)
+
+    <br />
+    @Html.LabelFor(x => x.Pizza)
+    <text>&nbsp;</text>
+    @Html.TextBoxFor(x => x.Pizza)
+
+    <br />
+    <text>Please Select Pizza Size>&nbsp;</text>
+    @Html.DropDownListFor(x => x.PizzaSize,
+       Html.GetEnumSelectList(Model.PizzaSize.GetType()), "Select pizza size")
+    <br />
+
+    <button type="submit">Submit</button>
+    }
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <h4>Using Tag Helper</h4>
+    <form asp-controller="Order" asp-action="NewOrder" method="post">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+        <br />
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
+        <br />
+        <label asp-for="Pizza"></label>
+        <input asp-for="Pizza" />
+        <br />
+        <select asp-for="PizzaSize" asp-items="Html.GetEnumSelectList<PizzaSize>()">
+        </select>
+        <select asp-for="PizzaSize" asp-items="Html.GetEnumSelectList<PizzaSize>()">
+            <option value="">Select a pizza</option>
+        </select>
+        <br />
+        <button type="submit">Submit</button>
+    </form>

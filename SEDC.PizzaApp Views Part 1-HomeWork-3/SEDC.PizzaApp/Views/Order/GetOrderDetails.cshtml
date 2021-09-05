@@ -1,0 +1,21 @@
+﻿
+
+@model MyOrderDetailsViewModel
+
+@{
+    string status = "The pizza is on the way...";
+    if (Model.IsDelivered)
+    {
+        status = "The Pizza is delivered to the required destitnation!";
+    }
+}
+<h4>Order Details View</h4>
+
+<ul>
+    <li>ID: @Model.Id</li>
+    <li>Full name: @Model.FullName</li>
+    <li>Pizza: @Model.Pizza</li>
+    <li>Price: @Model.Price</li>
+    <li>Delivered: @status</li>
+</ul>
+
