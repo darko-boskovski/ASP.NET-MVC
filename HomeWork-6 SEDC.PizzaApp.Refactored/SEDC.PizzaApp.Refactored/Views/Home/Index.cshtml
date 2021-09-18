@@ -1,0 +1,26 @@
+﻿@model OrderHomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group input-group-md">
+                <span class="input-group-addon">@Html.LabelFor(x => x.NumberOfPizzas)&nbsp&nbsp</span>
+                @Html.TextBoxFor(x => x.NumberOfPizzas, new { @class = "form-control" })
+            </div>
+            <br/>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon">@Html.LabelFor(x => x.NumberOfDrinks)&nbsp&nbsp</span>
+                @Html.TextBoxFor(x => x.NumberOfDrinks, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-danger" type="submit">Submit</button>
+}
+
+
