@@ -102,7 +102,7 @@ namespace SEDC.PizzaApp.DataAccess
                     Id = 1,
                     Name = "Skopsko",
                     DrinkSize = DrinkSize.Medium,
-                    Price=50
+                    Price=70
                 },
             };
 
