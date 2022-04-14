@@ -2,4 +2,22 @@
 @{ ViewBag.Title = "Menu"; }
 
 <h1>Pizza Menu</h1>
+
+
+@for (int i = 0; i < Model.Menu.Count; i++)
+{
+    <ul>
+        <li>
+            Pizza: @Model.Menu[i].Name
+        </li>
+        <li>
+            Pizza Price: @Model.Menu[i].Size
+        </li>
+        <li>
+            Pizza Price: @Model.Menu[i].Price
+        </li>
+    </ul>
+
+}
+
 GetAllFeedbacks

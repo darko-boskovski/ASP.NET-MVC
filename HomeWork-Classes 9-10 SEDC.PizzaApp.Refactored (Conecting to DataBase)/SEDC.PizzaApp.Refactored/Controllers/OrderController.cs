@@ -28,7 +28,7 @@ namespace SEDC.PizzaApp.Refactored.Controllers
 
             var orderItems = new List<OrderItemViewModel>();
 
-            foreach(var order in orders)
+            foreach (var order in orders)
             {
                 orderItems.Add(new OrderItemViewModel()
                 {
@@ -47,7 +47,7 @@ namespace SEDC.PizzaApp.Refactored.Controllers
         {
             var order = new OrderViewModel();
             order.Pizzas = new List<PizzaViewModel>();
-            for(int i = 0; i < numberOfPizzas; i++)
+            for (int i = 0; i < numberOfPizzas; i++)
             {
                 order.Pizzas.Add(new PizzaViewModel());
             }
@@ -56,7 +56,7 @@ namespace SEDC.PizzaApp.Refactored.Controllers
 
             return View(order);
         }
-        
+
         [HttpPost]
         public IActionResult Order(OrderViewModel model)
         {
@@ -78,7 +78,7 @@ namespace SEDC.PizzaApp.Refactored.Controllers
 
                 //order.Pizza = _menuService.GetPizzaFromMenu(model.Pizza.Name, model.Pizza.Size);
                 order.PizzaOrders = new List<PizzaOrder>();
-                foreach(PizzaViewModel pizzaViewModel in model.Pizzas)
+                foreach (PizzaViewModel pizzaViewModel in model.Pizzas)
                 {
                     Pizza pizza = _menuService.GetPizzaFromMenu(pizzaViewModel.Name, pizzaViewModel.Size);
                     PizzaOrder pizzaOrder = new PizzaOrder()
@@ -100,42 +100,61 @@ namespace SEDC.PizzaApp.Refactored.Controllers
             }
         }
 
+
+
+
+
         [HttpGet("order/edit/{id}")]
         public IActionResult OrderEdit(int id)
-        
-         {
-            
-            Order order = _orderService.GetOrderById(id);
-            OrderViewModel orderViewModel = new OrderViewModel()
-            {
-                OrderId = order.OrderId,
-                DeliveryPrice = order.DeliveryPrice,
-                IsDelivered = order.IsDelivered,
-                UserId = order.User.Id,
-                FirstName = order.User.FirstName,
-                LastName = order.User.LastName,
-                Address = order.User.Address,
-                Phone = order.User.Phone
-            };
 
-            orderViewModel.Pizzas = new List<PizzaViewModel>();
-            foreach(var pizzaOrder in order.PizzaOrders)
+        {
+            try
             {
-                orderViewModel.Pizzas.Add(new PizzaViewModel()
+                Order order = _orderService.GetOrderById(id);
+                if (order == null) {
+
+
+                    return View("_ThankYou");
+                }
+              
+                OrderViewModel orderViewModel = new OrderViewModel()
                 {
-                    Id = pizzaOrder.Pizza.Id,
-                    Name = pizzaOrder.Pizza.Name,
-                    Price = pizzaOrder.Pizza.Price,
-                    Size = pizzaOrder.Pizza.Size
-                });
+                    OrderId = order.OrderId,
+                    DeliveryPrice = order.DeliveryPrice,
+                    IsDelivered = order.IsDelivered,
+                    UserId = order.User.Id,
+                    FirstName = order.User.FirstName,
+                    LastName = order.User.LastName,
+                    Address = order.User.Address,
+                    Phone = order.User.Phone
+                };
+
+                orderViewModel.Pizzas = new List<PizzaViewModel>();
+                foreach (var pizzaOrder in order.PizzaOrders)
+                {
+                    orderViewModel.Pizzas.Add(new PizzaViewModel()
+                    {
+                        Id = pizzaOrder.Pizza.Id,
+                        Name = pizzaOrder.Pizza.Name,
+                        Price = pizzaOrder.Pizza.Price,
+                        Size = pizzaOrder.Pizza.Size
+                    });
+                }
+
+                orderViewModel.AvailablePizzas = _menuService.GetPizzasInMenu();
+
+                return View(orderViewModel);
+
+
             }
-
-            orderViewModel.AvailablePizzas = _menuService.GetPizzasInMenu();
-
-            return View(orderViewModel);
+            catch (Exception ex)
+            {
+                return View();
+            }
         }
+    
 
-        [HttpPost("order/edit/{id}")]
+            [HttpPost("order/edit/{id}")]
         public IActionResult OrderEdit(OrderViewModel model)
         {
             var order = new Order()

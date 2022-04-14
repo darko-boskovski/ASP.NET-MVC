@@ -1,0 +1,16 @@
+﻿@model List<ClientViewModel>
+
+
+<h3>List of Clients</h3>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+
+    <ul>
+        <li>Client Name:  @Model[i].FullName</li>
+        <li>Client Email Address:  @Model[i].EmailAddress</li>
+        <li>Client Phone Number:  @Model[i].MobilePhone</li>
+        <li>Clients Company: @Model[i].Company</li>
+    </ul>
+    <br />
+}

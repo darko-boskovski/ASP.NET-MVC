@@ -1,0 +1,16 @@
+﻿
+@model List<EmployeeViewModel>
+
+
+<h3>List of Employees</h3>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    
+<ul>
+    <li>Employee Name:  @Model[i].FullName</li>
+    <li>Employee Email Address:  @Model[i].EmailAddress</li>
+    <li>Employee Phone Number:  @Model[i].MobilePhone</li>
+</ul>
+    <br />
+}

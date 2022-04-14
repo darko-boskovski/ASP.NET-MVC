@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Graduate_Program_.Net_Assignment</RootNamespace>
+    <UserSecretsId>2ffb300f-321a-4388-ac7b-cd0a7cb16b09</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Graduate_Program.DataAccess\Graduate_Program.DataAccess.csproj" />
+    <ProjectReference Include="..\Graduate_Program.Services\Graduate_Program.Services.csproj" />
+    <ProjectReference Include="..\Graduate_Program.WebModels\Graduate_Program.WebModels.csproj" />
+  </ItemGroup>
+
+</Project>
